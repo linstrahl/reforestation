@@ -14,7 +14,7 @@ The primary objective of this research is to observe Git's behavior towards clou
 - **Runtime Environment**: Ubuntu Latest (GitHub Hosted Virtualization)
 - **Engine**: Advanced Shell Scripting / POSIX Bash
 - **Intelligence**: Randomized Decision Trees (utilizing complex `if-else` structures)
-- **Hardware Optimized**: Rigorously tested on **MacBook Pro M4 Pro** (Clamshell Mode / AlDente 80% limit)
+- **Hardware Optimized**: Rigorously tested on **MacBook Pro M4 Pro**
 
 ## 🧪 Research Methodology
 The system operates based on the following high-level parameters:
