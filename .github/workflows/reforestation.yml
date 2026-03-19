@@ -14,6 +14,8 @@ jobs:
   auto_commit:
     name: Pretending to be productive
     runs-on: ubuntu-latest
+    env: 
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Gaslighting Git into thinking this directory is safe
         run: git config --global --add safe.directory /github/workspace
@@ -26,7 +28,7 @@ jobs:
         id: dice
         run: |
           ROLL=$(( $RANDOM % 100 + 1 ))
-          if [ $ROLL -le 100 ]; then
+          if [ $ROLL -le 30 ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
             echo "Coffee break mode: ON. Skipping this commit."
             exit 0
