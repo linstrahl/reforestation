@@ -53,6 +53,7 @@ jobs:
           echo "Sync metadata: $d" > LAST_UPDATED
           
       - name: Generate randomized git contribution
+        if: success()
         run: |
           git config --local user.email "linstrahl@gmail.com"
           git config --local user.name "linstrahl"
