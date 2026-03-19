@@ -39,7 +39,6 @@ jobs:
             "+1 bug, +1 feature, perfectly balanced"
             "added feature nobody asked for"
             "why am I still doing this"
-            "its 3am and im still coding send help!"
             "works on my machine ¯\_(ツ)_/¯"
             "I should've been a farmer"
           )
@@ -58,7 +57,7 @@ jobs:
           git config --local user.email "linstrahl@gmail.com"
           git config --local user.name "linstrahl"
           git add -A
-          git commit -m "$COMMIT_MSG"
+          git commit -m "${{ env.COMMIT_MSG }}"
           
       - name: Synchronize changes to Origin
         uses: ad-m/github-push-action@v0.6.0
