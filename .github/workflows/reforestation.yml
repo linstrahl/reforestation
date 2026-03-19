@@ -1,7 +1,13 @@
-name: Daily GitHub Reforestation 🌳
+name: Daily GitHub Reforestation
 on:
   schedule:
-    - cron: "0 0,3,6,9,12,14,16 * * *"
+    - cron: "15 0 * * *"   # 07:15 WIB
+    - cron: "42 3 * * *"   # 10:42 WIB
+    - cron: "07 6 * * *"   # 13:07 WIB
+    - cron: "33 9 * * *"   # 16:33 WIB
+    - cron: "51 12 * * *"  # 19:51 WIB
+    - cron: "24 14 * * *"  # 21:24 WIB
+    - cron: "10 16 * * *"  # 23:10 WIB
   workflow_dispatch:
 
 jobs:
@@ -16,12 +22,14 @@ jobs:
           persist-credentials: true
           fetch-depth: 1
           
-      - name: Calculate randomized execution delay
-        id: random_data
+      - name: Randomized daily intensity logic
         run: |
-          SLEEP_TIME=$(( $RANDOM % 3600 ))
-          echo "Sleeping for $SLEEP_TIME seconds..."
-          sleep $SLEEP_TIME
+          ROLL=$(( $RANDOM % 100 + 1 ))
+          if [ $ROLL -le 30 ]; then
+            echo "Coffee break mode: ON. Skipping this commit."
+            exit 0
+          fi
+          echo "Productivity mode: ON. Proceeding to plant a tree."
 
           MESSAGES=(
             "I have no idea why this works"
@@ -50,7 +58,7 @@ jobs:
           git config --local user.email "linstrahl@gmail.com"
           git config --local user.name "linstrahl"
           git add -A
-          git commit -m "${{ env.COMMIT_MSG }}"
+          git commit -m "$COMMIT_MSG"
           
       - name: Synchronize changes to Origin
         uses: ad-m/github-push-action@v0.6.0
