@@ -23,9 +23,11 @@ jobs:
           fetch-depth: 1
           
       - name: Randomized daily intensity logic
+        id: dice
         run: |
           ROLL=$(( $RANDOM % 100 + 1 ))
           if [ $ROLL -le 100 ]; then
+            echo "should_skip=true" >> $GITHUB_OUTPUT
             echo "Coffee break mode: ON. Skipping this commit."
             exit 0
           fi
@@ -53,7 +55,7 @@ jobs:
           echo "Sync metadata: $d" > LAST_UPDATED
           
       - name: Generate randomized git contribution
-        if: success()
+        if: steps.dice.outputs.should_skip != 'true'
         run: |
           git config --local user.email "linstrahl@gmail.com"
           git config --local user.name "linstrahl"
