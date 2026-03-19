@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Gaslighting Git into thinking this directory is safe
         run: git config --global --add safe.directory /github/workspace
-      - uses: actions/checkout@v3     
+      - uses: actions/checkout@v4
         with:
           persist-credentials: true
           fetch-depth: 1
@@ -26,7 +26,7 @@ jobs:
         id: dice
         run: |
           ROLL=$(( $RANDOM % 100 + 1 ))
-          if [ $ROLL -le 30 ]; then
+          if [ $ROLL -le 100 ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
             echo "Coffee break mode: ON. Skipping this commit."
             exit 0
@@ -64,7 +64,7 @@ jobs:
           git commit -m "$COMMIT_MSG"
           
       - name: Synchronize changes to Origin
-        uses: ad-m/github-push-action@v0.6.0
+        uses: ad-m/github-push-action@v0.8.0
         with:
           force: true
           branch: main
