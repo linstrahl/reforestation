@@ -27,7 +27,7 @@ jobs:
         run: |
           ROLL=$(( $RANDOM % 100 + 1 ))
           if [ $ROLL -le 100 ]; then
-            echo "should_skip=true" >> $GITHUB_OUTPUT
+            echo "skip=true" >> $GITHUB_OUTPUT
             echo "Coffee break mode: ON. Skipping this commit."
             exit 0
           fi
