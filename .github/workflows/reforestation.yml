@@ -52,7 +52,7 @@ jobs:
         if: steps.dice.outputs.skip != 'true'
         run: |
           cat > LAST_UPDATED
-          d=$(date -u '+%A, %d %m %Y - %H:%M:%S UTC')
+          d=$(date -u '+%A, %d-%m-%Y | %H:%M:%S UTC')
           echo "Sync: $d" > LAST_UPDATED
           
       - name: Generate randomized git contribution
